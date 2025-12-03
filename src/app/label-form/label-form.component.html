@@ -61,14 +61,14 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of verificationResults.discrepancies" 
-              [ngClass]="{'row-match': item.status === 'Match', 'row-mismatch': item.status !== 'Match'}">
+              [ngClass]="{'row-match': item.status.includes('Match'), 'row-mismatch': item.status.includes('Match') === false}">
             <td>{{ item.field }}</td>
             <td class="status-cell">
-              {{ item.status === 'Match' ? '✅ Match' : '❌ Mismatch' }}
+              {{ item.status.includes('Match') ? '✅ Match' : '❌ Mismatch' }}
             </td>
             <td>{{ item.expected }}</td>
             <td>
-              <span *ngIf="item.status === 'Match'">Content successfully found on the label.</span>
+              <span *ngIf="item.status.includes('Match')">Content successfully found on the label.</span>
               <span *ngIf="item.status !== 'Match'">Text was either not found, or did not match the form input (case-insensitive check).</span>
             </td>
           </tr>

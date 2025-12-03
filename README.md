@@ -90,6 +90,8 @@ Detailed Results Table: Clear green/red match table comparing expected vs found 
 
 Loading Indicator: Disables button and shows message during backend verification.
 
+Unit Testing: ui: Run tests using ng test. Backend: Run tests using node --test verification.test.js.
+
 Secure Credential Handling: Google Vision credentials loaded only from backend environment variables.
 
 Graceful Error Handling: UI displays backend-originated errors like OCR failures.

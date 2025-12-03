@@ -37,6 +37,9 @@ export class LabelFormComponent {
   // Handle form submission
   onSubmit(): void {
     if (!this.selectedFile) return;
+    this.verificationResults = null;
+    this.responseMessage = null;
+    this.isLoading = true;
 
     // Use FormData to combine text fields and the binary file
     const formData = new FormData();
