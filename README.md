@@ -1,59 +1,95 @@
-# TtbVerifierApp
+## TTB Alcohol Label Verification App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.4.
+This is a full-stack web application designed to simulate the Alcohol and Tobacco Tax and Trade Bureau (TTB) label approval process. It uses AI (Google Cloud Vision API) to verify that an alcohol label image contains the required data submitted by the user in the application form.
 
-## Development server
+✨ Project Status
 
-To start a local development server, run:
+The application is functional, deployed live, and meets all core requirements of the assessment, demonstrating a robust and secure full-stack architecture.
 
-```bash
+🔗 Live Deployed Links
+
+Live Application URL (Frontend - Vercel/Netlify): https://ttb-ui.vercel.app/
+
+Backend API URL (Render): https://ttb-fhe1.onrender.com
+
+## Technology Stack
+Component	Technology	Rationale
+Frontend (UI)	Angular 17+	Robust structure and component-based UI development.
+Backend (API)	Node.js with Express	Fast server environment, ideal for file uploads and API calls.
+AI Processing	Google Cloud Vision API	High accuracy on complex label typography for reliable verification.
+Deployment	Vercel (Frontend) & Render (Backend)	Secure and optimized hosting for static and server environments.
+💻 Local Setup and Installation
+
+This project is split into two repositories: Backend API and Angular Frontend.
+
+1. Backend Setup (Node.js/Express)
+
+Clone the Backend repository:
+https://github.com/shangyi111/ttb-backend
+
+Install dependencies:
+
+npm install
+
+
+Create a .env file and add your Google Credentials JSON in one line:
+
+GOOGLE_CREDENTIALS_JSON={"type":"service_account", "project_id":"...", ...}
+
+
+Start the Backend API (runs at http://localhost:3000):
+
+node server.js
+
+2. Frontend Setup (Angular)
+
+Navigate to the Angular repository (https://github.com/shangyi111/ttb-ui).
+
+Install dependencies:
+
+npm install
+
+
+Configure local API endpoint:
+src/environments/environment.ts
+
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000'
+};
+
+
+Run the Angular UI (runs at http://localhost:4200):
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Verification Approach and Assumptions
 
-## Code scaffolding
+The verification logic (in performVerification inside server.js) follows strong normalization and accuracy rules.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Matching Assumptions
 
-```bash
-ng generate component component-name
-```
+Normalization: Lowercasing, whitespace cleanup, punctuation stripping.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Case-insensitive comparisons
 
-```bash
-ng generate --help
-```
+ABV Matching: Regular expression extracting numeric + unit patterns (e.g., 45% Alc./Vol.)
 
-## Building
+Verification Checks
+Field	            Requirement	         Logic
 
-To build the project run:
+Brand Name	        Mandatory	         Normalized string match
+Product Class/Type	Mandatory	         Normalized string match
+Alcohol Content (ABV)	Mandatory	     Regex-based numeric + unit search
+Government Warning	Mandatory (Bonus)	 Looks for "government warning"
+Net Contents	    Optional (Bonus)	 Searches volume + unit (e.g., 750ml)
 
-```bash
-ng build
-```
+## Bonus Features and Polish
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Detailed Results Table: Clear green/red match table comparing expected vs found values.
 
-## Running unit tests
+Loading Indicator: Disables button and shows message during backend verification.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Secure Credential Handling: Google Vision credentials loaded only from backend environment variables.
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Graceful Error Handling: UI displays backend-originated errors like OCR failures.

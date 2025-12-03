@@ -1,1 +1,178 @@
-input, button { margin-top: 5px; }
+/* --- Layout and Structure --- */
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 15px;
+    color: #333;
+}
+
+.verification-form {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* --- Buttons and Indicators --- */
+.submit-button {
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover:not([disabled]) {
+    background-color: #0056b3;
+}
+
+.submit-button[disabled] {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+}
+
+.loading-indicator {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+    border-radius: 4px;
+    text-align: center;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* --- Results Display --- */
+.separator {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.results-container h3 {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 0;
+}
+
+.match-success {
+    background-color: #e6ffe6; /* Light Green */
+    color: #008000; /* Dark Green */
+    border: 1px solid #008000;
+}
+
+.match-failure {
+    background-color: #fff0f0; /* Light Red */
+    color: #cc0000; /* Dark Red */
+    border: 1px solid #cc0000;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.95em;
+}
+
+.results-table th, .results-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table-header-row {
+    background-color: #f1f3f5;
+    font-weight: bold;
+    color: #333;
+}
+
+.row-match {
+    background-color: #f0fff0;
+}
+
+.row-mismatch {
+    background-color: #fff0f0;
+}
+
+.status-cell {
+    font-weight: bold;
+}
+
+/* --- Extracted Text Details --- */
+.extracted-text-details {
+    margin-top: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.details-summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: #007bff;
+    padding: 15px;
+    display: block; /* Makes the summary area clickable */
+}
+
+.extracted-text-content {
+    white-space: pre-wrap;
+    margin-top: 10px;
+    font-size: 0.85em;
+    padding: 0 15px 15px 15px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+}
+
+/* --- Error Box --- */
+.error-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff3f3;
+    border: 1px solid #ffaaaa;
+    border-radius: 4px;
+}
+
+.error-header {
+    color: #cc0000;
+    margin-top: 0;
+}
+
+.error-pre {
+    white-space: pre-wrap;
+    font-size: 0.9em;
+    padding: 10px;
+    background-color: #fcebeb;
+    border-radius: 3px;
+}
