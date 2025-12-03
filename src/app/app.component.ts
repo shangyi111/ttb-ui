@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { LabelFormComponent } from './label-form/label-form.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [LabelFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

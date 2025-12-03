@@ -1,0 +1,61 @@
+<div style="padding: 20px;">
+      <h2>TTB Label Verification</h2>
+      
+      <form (ngSubmit)="onSubmit()">
+        <label>Brand Name: <input type="text" [(ngModel)]="brandName" name="brandName" required></label><br><br>
+        <label>Alcohol Content: <input type="number" [(ngModel)]="alcoholContent" name="alcoholContent" required></label><br><br>
+        
+        <label>
+          Upload Label Image:
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" required>
+        </label><br><br>
+        
+        <button type="submit" [disabled]="!selectedFile">Verify Label</button>
+      </form>
+
+      <div *ngIf="verificationResults">
+  <hr>
+  
+  <h3 [style.color]="verificationResults.overall_match ? 'green' : 'red'">
+    <span *ngIf="verificationResults.overall_match">✅ Label Verification: MATCH SUCCESSFUL!</span>
+    <span *ngIf="!verificationResults.overall_match && !verificationResults.error">❌ Label Verification: DISCREPANCIES FOUND.</span>
+    <span *ngIf="verificationResults.error">⚠️ {{ verificationResults.error }}</span>
+  </h3>
+  
+  <div *ngIf="verificationResults.discrepancies">
+    <h4>Detailed Check Outcomes:</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Status</th>
+          <th>Expected (Form)</th>
+          <th>Found on Label</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of verificationResults.discrepancies" 
+            [style.color]="item.status === 'Match' ? 'green' : 'red'">
+          <td>{{ item.field }}</td>
+          <td>{{ item.status }}</td>
+          <td>{{ item.expected }}</td>
+          <td>
+            <span *ngIf="item.status === 'Match'">{{ item.status }}</span>
+            <span *ngIf="item.status !== 'Match'">N/A (Mismatch or Not Found)</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+    <details>
+      <summary>View Full Extracted Text (For Debugging)</summary>
+      <p>{{ verificationResults.extracted_text }}</p>
+    </details>
+  </div>
+
+  <div *ngIf="responseMessage">
+      <h3>Error Response:</h3>
+      <pre>{{ responseMessage | json }}</pre>
+  </div>
+</div>
