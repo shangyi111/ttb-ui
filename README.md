@@ -95,3 +95,12 @@ Unit Testing: ui: Run tests using ng test. Backend: Run tests using node --test 
 Secure Credential Handling: Google Vision credentials loaded only from backend environment variables.
 
 Graceful Error Handling: UI displays backend-originated errors like OCR failures.
+
+## Known Limitations
+Image Quality Dependent: Accuracy relies heavily on clear, high-resolution images.
+
+No Punctuation Check: Government Warning only verifies phrase presence, not exact mandated text.
+
+No Contextual Check: Risk of false matches if similar text appears elsewhere on the label.
+
+Sync Processing: Backend is synchronous; may time out under high load.
